@@ -1,28 +1,12 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-* rename this file devlog.txt
 
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
- modify appropriately.
-Each entry should begin with the following format:
- firstL -- TIMESTAMP\n
-e.g.: 
-clydeS -- 2999-12-31 23:59
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-<Team Name (minus "team")>
-<Member Bubbles>
-<Member Buttercup>
-<Member Blossom>
-pd <pd#>
+JumpyPotatoes
+Runmin Lu
+Raymond Wu
+Jerry Ye
+Ivan Zhang
+pd 7
 ---------------------
-<Project Title/Description>
+PoliTracker
 
 
  ______   ______   __   __   __       ______   _______     
@@ -36,9 +20,18 @@ pd <pd#>
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
+raymondW -- 2019-01-07 21:38
+--------------------------------------------------------------
+- Added project description, program components, component map, database schema, and breakdown of tasks to design.pdf
+- Added design.pdf and devlog.txt to docs/
+- Added Flask starter kit
+- Updated timeline for tasks
+
+==============================================================
 fristL -- TIMESTAMP
 --------------------------------------------------------------
 <Thing fristL did.>
+
 ==============================================================
 
 

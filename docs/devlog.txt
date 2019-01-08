@@ -39,8 +39,10 @@ raymondW -- 2019-01-08 15:46
 - Updated design.pdf based upon feedback received from class
 - Update devlog.txt addressing design changes
 - Added /util file for database creation, table for user functions
---------------------------------------------------------------
-<Thing fristL did.>
+
+==============================================================
+ivanZ -- 2019-01-08 19:00
+- Created 411 API Card on Google Civic Information API
 
 ==============================================================
 fristL -- TIMESTAMP

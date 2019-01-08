@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>
+      {% block title %} {% endblock %}
+      | Website
+    </title>
+  </head>
+  
+
+  <body>
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+    {{ each }}
+    <br>
+    {% endfor %}
+
+    {% block content %}
+    <p>No hablo queso.</p>
+    {% endblock %}
+
+    {% block footer %}
+    <em> &copy; Copyright 2099 by Thluffy </em>
+    {% endblock %}
+  </body>
+
+</html>
+

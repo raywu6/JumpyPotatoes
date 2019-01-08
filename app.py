@@ -1,5 +1,7 @@
 from flask import Flask, render_template #pip install flask
 
+from util import database
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,4 +10,5 @@ def index():
 
 if __name__ == '__main__':
     app.debug = True #set to False in production mode
+    database.setup() #setup database
     app.run()

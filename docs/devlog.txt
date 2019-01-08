@@ -9,7 +9,14 @@ pd 7
 PoliTracker
 
 
- ______   ______   __   __   __       ______   _______     
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+PRE-DEVELOPMENT DESIGN DOC CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+raymondW -- 2018-01-08 15:35
+- Based on the feedback we received on our design doc, the two reviewing teams agreed that we had a detailed breakdown of tasks and that our component map was good, but since we realized that there was a lot of tasks to do, we needed to determine which functions were essential and which were additional features. Upon further consultation with our group, we decided that allowing a logged in user to follow politicians would be an additional feature, and that showing public sentiment analysis would also be an additional feature, and that the features would be implemented in that order. This is now reflected in our program components, database schema, and in the breakdown of tasks. 
+
+______   ______   __   __   __       ______   _______     
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
 \:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
  \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
@@ -26,6 +33,14 @@ raymondW -- 2019-01-07 21:38
 - Added design.pdf and devlog.txt to docs/
 - Added Flask starter kit
 - Updated timeline for tasks
+
+==============================================================
+raymondW -- 2019-01-08 15:46
+- Updated design.pdf based upon feedback received from class
+- Update devlog.txt addressing design changes
+- Added /util file for database creation, table for user functions
+--------------------------------------------------------------
+<Thing fristL did.>
 
 ==============================================================
 fristL -- TIMESTAMP

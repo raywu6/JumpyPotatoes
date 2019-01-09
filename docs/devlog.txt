@@ -35,6 +35,12 @@ raymondW -- 2019-01-07 21:38
 - Updated timeline for tasks
 
 ==============================================================
+jerryY -- 2019-01-07 21:38
+--------------------------------------------------------------
+- Worked on component map with raymond 
+- applied for twitter development account which may be used as part of an additional feature
+
+==============================================================
 raymondW -- 2019-01-08 15:46
 - Updated design.pdf based upon feedback received from class
 - Update devlog.txt addressing design changes
@@ -42,6 +48,7 @@ raymondW -- 2019-01-08 15:46
 
 ==============================================================
 ivanZ -- 2019-01-08 19:00
+--------------------------------------------------------------
 - Created 411 API Card on Google Civic Information API
 
 ==============================================================

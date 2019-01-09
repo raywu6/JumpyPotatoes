@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <h1>Login</h1>
+  <br>
+  {% set msgs = get_flashed_messages(with_categories=true) %}
+  {% for category, each in msgs %}
+    <p class="{{category}}">{{each}}<p>
+  {% endfor %}
+  <form action="/auth" method="POST">
+    <p class="login-info">Username</p>
+    <input type="text" name="username">
+    <br>
+    <p class="login-info">Password</p>
+    <input type="password" name="password">
+    <br><br>
+    <p class="register">Don't have an account? <a href="/register">Register here!</a><p>
+    <input type="submit" id="submit" name="submit" value="Login">
+  </form>
+</div>
+
+{% endblock %}

@@ -12,4 +12,3 @@ def setup():
     c.execute(command)
     db.commit()
     db.close()
-

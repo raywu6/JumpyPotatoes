@@ -56,7 +56,6 @@ def authenticate():
             return redirect(url_for("login"))
         return redirect(url_for("register"))
     elif (submit_type == "Login"):
-        print('asda')
         username_input = request.form.get("username")
         password_input = request.form.get("password")
         if (username_input in username_list):

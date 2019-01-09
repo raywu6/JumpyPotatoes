@@ -1,8 +1,6 @@
-from urllib import request, error #stdlib
-import os
+import os #stdlib
 
-from flask import Flask, render_template, session, redirect, flash, url_for #pip install flask
-from flask import request as frequest
+from flask import Flask, render_template, session, redirect, request, flash, url_for #pip install flask
 
 from util import database
 
@@ -37,12 +35,12 @@ def authenticate():
     '''Handles the information that the user submits for either logging in or
     registering. It will redirect the user to the appropriate pages and flash
     messages if there are errors.'''
-    submit_type = frequest.form.get("submit")
+    submit_type = request.form.get("submit")
     username_list = database.get_username_list()
     if (submit_type == "Register"):
-        username_input = frequest.form.get("username")
-        password_input = frequest.form.get("password")
-        c_password_input = frequest.form.get("confirm_password")
+        username_input = request.form.get("username")
+        password_input = request.form.get("password")
+        c_password_input = request.form.get("confirm_password")
         if (len(username_input.replace(" ","")) < 4):
             flash("Username has to be at least 4 characters long.","error")
         elif (len(password_input.replace(" ","")) < 4):
@@ -59,8 +57,8 @@ def authenticate():
         return redirect(url_for("register"))
     elif (submit_type == "Login"):
         print('asda')
-        username_input = frequest.form.get("username")
-        password_input = frequest.form.get("password")
+        username_input = request.form.get("username")
+        password_input = request.form.get("password")
         if (username_input in username_list):
             if (database.check_password(username_input,password_input)):
                 session["id"] = database.get_id_from_username(username_input)

@@ -14,15 +14,15 @@ PoliTracker
 PRE-DEVELOPMENT DESIGN DOC CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 raymondW -- 2018-01-08 15:35
-- Based on the feedback we received on our design doc, the two reviewing teams agreed that we had a detailed breakdown of tasks and that our component map was good, but since we realized that there was a lot of tasks to do, we needed to determine which functions were essential and which were additional features. Upon further consultation with our group, we decided that allowing a logged in user to follow politicians would be an additional feature, and that showing public sentiment analysis would also be an additional feature, and that the features would be implemented in that order. This is now reflected in our program components, database schema, and in the breakdown of tasks. 
+- Based on the feedback we received on our design doc, the two reviewing teams agreed that we had a detailed breakdown of tasks and that our component map was good, but since we realized that there was a lot of tasks to do, we needed to determine which functions were essential and which were additional features. Upon further consultation with our group, we decided that allowing a logged in user to follow politicians would be an additional feature, and that showing public sentiment analysis would also be an additional feature, and that the features would be implemented in that order. This is now reflected in our program components, database schema, and in the breakdown of tasks.
 
-______   ______   __   __   __       ______   _______     
-/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
-\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
- \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
-  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
-   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
-    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -45,10 +45,13 @@ ivanZ -- 2019-01-08 19:00
 - Created 411 API Card on Google Civic Information API
 
 ==============================================================
+williamL -- 2019-01-08 22:30
+--------------------------------------------------------------
+- modified util/database.py
+
+==============================================================
 fristL -- TIMESTAMP
 --------------------------------------------------------------
 <Thing fristL did.>
 
 ==============================================================
-
-

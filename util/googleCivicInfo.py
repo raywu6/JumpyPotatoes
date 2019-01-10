@@ -1,33 +1,34 @@
 from urllib import request, parse
 from urllib.error import HTTPError # error handling for bad api calls
 import json
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def getkey(k_file):
     '''retrives api keys based on file name'''
     try:
         f = open(k_file, 'r')
+        l = f.read().split('\n')
+        f.close()
+        return l[0]
     except FileNotFoundError:
         print("Missing key file, HALP!")
-    l = f.read().split('\n')
-    f.close()
-    return l[0]
+        return None
 
-googlekey = getkey("util/googleCivic.txt") #gets API key
+googlekey = getkey("googleCivic.txt") #gets API key
 
-def civic():
-    '''info on a certain politcian'''
-    #poke = poke.lower()
+def civic(zip_code):
+    '''info on all politcian in a zip_code'''
     try:
-        url = "https://www.googleapis.com/civicinfo/v2/representatives"
-        #url = url + poke
-        #cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        #stuff = request.urlopen(cri) # GETS STUFF
-        #js = stuff.read() # gets info from urlopen
-        #jason = json.loads(js)
-        #if(poke == ''):
-        #    return jason["results"]
-        #return jason
+        url = "https://www.googleapis.com/civicinfo/v2/representatives?key=" + googlekey
+        url += "&address=" + str(zip_code)
+        cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        stuff = request.urlopen(url) # GETS STUFF
+
+        js = stuff.read() # gets info from urlopen
+        jason = json.loads(js)
+        return jason["officials"]
     except HTTPError:
-
-
+        return "error"
     return None

@@ -2,7 +2,7 @@ import os #stdlib
 
 from flask import Flask, render_template, session, redirect, request, flash, url_for #pip install flask
 
-from util import database
+from util import database, googleCivicInfo
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)

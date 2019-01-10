@@ -2,7 +2,7 @@ import os #stdlib
 
 from flask import Flask, render_template, session, redirect, request, flash, url_for #pip install flask
 
-from util import database, googleCivicInfo
+from util import database, googleCivicInfo, news_api
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -10,6 +10,8 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def home():
+    print(news_api.news_api("W"))
+    print(news_api.nyt_news("W"))
     return render_template("index.html")
 
 def is_logged_in():

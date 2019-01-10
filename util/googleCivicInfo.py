@@ -16,7 +16,7 @@ def getkey(k_file):
         print("Missing key file, HALP!")
         return None
 
-googlekey = getkey("googleCivic.txt") #gets API key
+googlekey = getkey("util/googleCivic.txt") #gets API key
 
 def civic(zip_code):
     '''info on all politcian in a zip_code'''

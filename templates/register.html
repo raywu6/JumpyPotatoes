@@ -11,8 +11,12 @@
 {% for category, each in msgs %}
   <p class="{{category}}">{{each}}<p>
 {% endfor %}
+
 <div class="container">
-  <div class="card">
+  <div class="card border-dark bg-light mb-3">
+    <div class="card-header">
+      <h1> Register </h1>
+    </div>
     <div class="card-body">
       <form action="/auth" method="POST">
         <div class="form-group">
@@ -27,8 +31,8 @@
           <label>Confirm Password</label>
           <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password">
         </div>
-        <p class="register">Already have an account? <a href="/login">Login here!</a></p>
-        <input class="btn btn-primary" type="submit" id="submit" name="submit" value="Register">
+        <p class="register">Already have an account? <a href="/login" class="btn btn-secondary btn-sm">Login here!</a></p>
+        <input class="btn btn-dark" type="submit" id="submit" name="submit" value="Register">
       </form>
     </div>
   </div>

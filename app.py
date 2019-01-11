@@ -4,16 +4,20 @@ from flask import Flask, render_template, session, redirect, request, flash, url
 
 from util import database, googleCivicInfo, news_api, fortune
 
+import pprint
+
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 
 @app.route('/')
 def home():
-    print(news_api.news_api("W"))
-    list = news_api.nyt_news("trump")
+    #print(news_api.news_api("W"))
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(googleCivicInfo.civic(10027))
+    news_list = news_api.nyt_news("china")
     quote = fortune.getQuote()
-    return render_template("index.html", q = quote[0], c = quote[1], l = list)
+    return render_template("index.html", q = quote, l = news_list, c = len(news_list))
 
 def is_logged_in():
     '''Returns True if the user is logged in. False otherwise.'''

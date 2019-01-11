@@ -12,33 +12,36 @@
   <div class="row">
 
     <div class="col-2">
-      <div class="card">
-        <div class="card-header">
+      <div class="card border-secondary mb-3">
+        <div class="card-header border-secondary">
           Fortune says
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0">
-            <p>{{q}}</p>
-            <footer class="blockquote-footer"><cite title="Source Title">{{c}}</cite></footer>
+            <p>{{q[0]}}</p>
+            <footer class="blockquote-footer"><cite title="Source Title">{{q[1]}}</cite></footer>
           </blockquote>
         </div>
       </div>
     </div>
 
     <div class="col-8">
-      {% for i in range(3) %}
+      {% for i in range(5) %}
       <div class="row">
         {% for j in range(3) %}
+	{% if i * 3 + j < c %}
         <div class="col-4">
-          <div class="card">
-            <div class="card-header">
-              <a href="{{l[i * 3 + j]['web_url']}}">{{l[i * 3 + j]['headline']['main']}}</a>
+          <div class="card border-dark mb-3">
+            <div class="card-header border-dark">
+              <h4>{{l[i * 3 + j]['headline']['main']}}</h4>
             </div>
             <div class="card-body">
               <p> {{l[i * 3 + j]['snippet']}}</p>
+	      <a href="{{l[i * 3 + j]['web_url']}}" class="btn btn-dark">Read More</a>
             </div>
           </div>
         </div>
+	{% endif %}
         {% endfor %}
       </div>
       <br>

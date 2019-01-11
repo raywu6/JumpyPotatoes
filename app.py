@@ -11,7 +11,7 @@ app.secret_key = os.urandom(32)
 @app.route('/')
 def home():
     print(news_api.news_api("W"))
-    list = news_api.nyt_news("W")
+    list = news_api.nyt_news("trump")
     quote = fortune.getQuote()
     return render_template("index.html", q = quote[0], c = quote[1], l = list)
 

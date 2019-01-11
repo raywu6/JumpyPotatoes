@@ -11,7 +11,7 @@
   <hr>
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-2">
       <div class="card">
         <div class="card-header">
           Fortune says
@@ -25,9 +25,23 @@
       </div>
     </div>
 
-    <div class="col-6">
-      {% for i in range(10) %}
-        <p><a href="{{l[i]['web_url']}}">{{l[i]['web_url']}}</a></p>
+    <div class="col-8">
+      {% for i in range(3) %}
+      <div class="row">
+        {% for j in range(3) %}
+        <div class="col-4">
+          <div class="card">
+            <div class="card-header">
+              <a href="{{l[i * 3 + j]['web_url']}}">{{l[i * 3 + j]['headline']['main']}}</a>
+            </div>
+            <div class="card-body">
+              <p> {{l[i * 3 + j]['snippet']}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <br>
       {% endfor %}
     </div>
 

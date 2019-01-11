@@ -78,4 +78,5 @@ def logout():
 
 if __name__ == '__main__':
     app.debug = True #set to False in production mode
+    database.setup()
     app.run()

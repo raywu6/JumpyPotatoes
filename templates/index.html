@@ -5,5 +5,32 @@
 {% endblock %}
 
 {% block content %}
-This is the basic landing page
+<div class="container-fluid">
+  <br><br><br>
+  <h1>Home</h1>
+  <hr>
+  <div class="row">
+
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header">
+          Fortune says
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{q}}</p>
+            <footer class="blockquote-footer"><cite title="Source Title">{{c}}</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      {% for i in range(10) %}
+        <p><a href="{{l[i]['web_url']}}">{{l[i]['web_url']}}</a></p>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
 {% endblock %}

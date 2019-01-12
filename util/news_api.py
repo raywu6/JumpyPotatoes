@@ -38,7 +38,7 @@ def nyt_news(query):
     '''news articles from NY Times after given a query'''
     try:
         url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + nytimeskey
-        url += "&q=" + query
+        url += "&q=" + query.replace(" ", "+")
         cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         stuff = request.urlopen(url) # GETS STUFF
 

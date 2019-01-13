@@ -16,51 +16,52 @@
     </div>
 
     <div class="col-8">
+
       {% for i in range(5) %}
-      <div class="card-deck">
-        {% if i * 3 + 3 < c %}
+      <div class="row">
         {% for j in range(3) %}
-
-        <!-- <div class="col-4"> -->
-          <div class="card border-dark text-center mb-3">
-            <div class="card-header border-dark">
-              <h4>{{l[i * 3 + j]['name']}}</h4>
-            </div>
-            <img src="{% if 'photoUrl' in l[i * 3 + j] %} {{l[i * 3 + j]['photoUrl']}} {% else %} http://www.utas.edu.au/__data/assets/image/0015/141711/varieties/profile_image.png {% endif %}" class="card-img-top" alt="pic">
-
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Party: {{l[i * 3 + j]['party']}}</li>
-              <li class="list-group-item">Phone: {{l[i * 3 + j]['phones'][0]}}</li>
-              <!-- <li class="list-group-item">Vestibulum at eros</li> -->
-            </ul>
-            <div class="card-body bg-secondary">
-              <a class="btn btn-light" data-toggle="collapse" href="#collapseExample{{i * 3 + j}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Related News
-              </a>
-
-              <div class="collapse" id="collapseExample{{i * 3 + j}}">
-                <br>
-                {% for n in nl[i + 3 + j] %}
-                <div class="alert alert-primary">
-                  {{n['web_url']}}
-                </div>
-                {% endfor %}
-              </div>
+        {% if i*3+j < c %}
+        <div class="col-4">
+          <div class="card border-dark text-center">
+            <div class="card-header">
+              <h4>
+                <a data-toggle="collapse" href="#collapse{{i*3+j}}" role="button" aria-expanded="false" aria-controls="collapse{{i*3+j}}">{{l[i*3+j]['name']}}</a>
+              </h4>
             </div>
 
-            {% if 'urls' in l[i * 3 + j] %}
-            <div class="card-footer">
-              <a href="{{l[i * 3 + j]['urls'][0]}}" class="btn btn-dark ">Learn More</a>
+            <img src="{% if 'photoUrl' in l[i*3+j] %} {{l[i*3+j]['photoUrl']}} {% else %} http://www.utas.edu.au/__data/assets/image/0015/141711/varieties/profile_image.png {% endif %}" class="card-img-top" alt="pic">
+
+            <div class="list-group list-group-flush collapse" id="collapse{{i*3+j}}">
+
+              <li class="list-group-item">Party: {{l[i*3+j]['party']}}</li>
+              <li class="list-group-item">Phone: {{l[i*3+j]['phones'][0]}}</li>
+              {% if 'emails' in l[i*3+j] %}
+              <li>Email: {{l[i*3+j]['emails'][0]}}</li>
+              {% endif %}
+              {% if 'urls' in l[i*3+j] %}
+              <li class="list-group-item"><a href="{{l[i*3+j]['urls'][0]}}" class="btn btn-link">Official Website</a></li>
+              {% endif %}
+              <li class="list-group-item">
+                <form action="/politician" method="GET">
+                  <button type="submit" class="btn btn-link" name="name" value="{{l[i*3+j]['name']}}">Learn More</button>
+                </form>
+              </li>
+              <li class="list-group-item">
+                <!-- <form action="" method="GET"> -->
+                  <button type="submit" class="flw btn btn-primary" name="follow" value="{{l[i*3+j]['name']}}">Follow</button>
+                <!-- </form> -->
+              </li>
             </div>
-            {% endif %}
+
           </div>
-        <!-- </div> -->
-
-        {% endfor %}
+        </div>
         {% endif %}
+        {% endfor %}
       </div>
       <br>
       {% endfor %}
+      <!-- </div> -->
+
     </div>
 
   </div>

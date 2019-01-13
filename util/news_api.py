@@ -21,17 +21,18 @@ nytimeskey = getkey("util/nytApi.txt")
 
 def news_api(query):
     '''news articles from News API after given a query'''
-    try:
-        url = "https://newsapi.org/v2/everything?apiKey=" + nytimeskey
-        url += "&q=" + query
-        cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        stuff = request.urlopen(url) # GETS STUFF
+    # try:
+    url = "https://newsapi.org/v2/everything?&apiKey=" + newskey
+    url += "&q=" + query
+    # url += 'domains=nytimes.com'
+    cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    stuff = request.urlopen(url) # GETS STUFF
 
-        js = stuff.read() # gets info from urlopen
-        jason = json.loads(js)
-        return jason["articles"]
-    except HTTPError:
-        return "error"
+    js = stuff.read() # gets info from urlopen
+    jason = json.loads(js)
+    return jason["articles"]
+    # except HTTPError:
+    #     return "error"
     return None
 
 def nyt_news(query):
@@ -39,6 +40,7 @@ def nyt_news(query):
     try:
         url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + nytimeskey
         url += "&q=" + query.replace(" ", "+")
+        # url += 'facet_field=day_of_week'
         cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         stuff = request.urlopen(url) # GETS STUFF
 

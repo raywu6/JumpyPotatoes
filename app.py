@@ -14,18 +14,10 @@ app.secret_key = os.urandom(32)
 def home():
     #print(news_api.news_api("W"))
     pp = pprint.PrettyPrinter(indent=4)
-    civic_list = googleCivicInfo.civic(10027)
+    civic_list = googleCivicInfo.civic(99501)
     news_list = []
-    x = news_api.nyt_news('w')
-    for p in civic_list:
-        news_list.append(news_api.nyt_news(p['name']))
-    # pp.pprint(x)
-    # quote = fortune.getQuote()
-    # pp.pprint(news_list)
-    for n in news_list:
-        if (n != 'error'):
-            print(n[0]['headline']['main'])
-    return render_template("index.html", l = civic_list, c = len(civic_list), nl = news_list)
+    pp.pprint(civic_list)
+    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
 
 def is_logged_in():
     '''Returns True if the user is logged in. False otherwise.'''

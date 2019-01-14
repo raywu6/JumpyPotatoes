@@ -57,17 +57,17 @@ We are using both the Google Civic Information API, the News API, and The New Yo
 2. Click Library on the navigation pane on the left. In the search box, type "Civic Information."
 3. Click Enable to enable this API, and click Create Credentials to set up your API credentials.
 3. You will be then given an API key registered to your account for the registered application.
-4. Put the API key in a text file named 'googleCivic.txt' in the root directory of the cloned repo.
+4. Put the API key in a text file named `googleCivic.txt` in the root directory of the cloned repo.
 5. To send test API requests, consult the [API documentation](https://developers.google.com/civic-information/docs/v2/) for the appropriate API request URL and parameters you need for the desired information. You will need to include the key-value pair `key=YOUR_API_KEY_HERE`.
 
 #### [News API](https://newsapi.org/)
 0. Sign up for a News API account [here](https://newsapi.org/register).
 1. You will be then given an API key registered to your account.
-2. Put the API key in a text file named 'newsApi.txt' in the root directory of the cloned repo.
+2. Put the API key in a text file named `newsApi.txt` in the root directory of the cloned repo.
 3. To send test API requests, consult the appropriate [API documentation](https://newsapi.org/docs/get-started) for the appropriate API request URL and parameters for the information you want to obtain. Most commonly, you will need to include the key-value pair `apiKey=YOUR_API_KEY_HERE`.
 
 #### [The New York Times API](https://developer.nytimes.com/)
 0. Sign up for an account [here](https://developer.nytimes.com/signup). When prompted to select an API, choose "Article Search API."
 1. Your API key will be sent to your e-mail.
-2. Put the API key in a text file named 'nytApi.txt' in the root directory of the cloned repo.
+2. Put the API key in a text file named `nytApi.txt` in the root directory of the cloned repo.
 3. To send test API requests, consult the [API documentation](https://developer.nytimes.com/article_search_v2.json) for the appropriate API request URL and parameters you need for the desired information. You will need to include the key-value pair `api-key=YOUR_API_KEY_HERE`.

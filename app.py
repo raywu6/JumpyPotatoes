@@ -16,8 +16,29 @@ def home():
     #pp = pprint.PrettyPrinter(indent=4)
     civic_list = googleCivicInfo.civic(99501)
     news_list = []
+    #print(civic_list)
+    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
+
+@app.route("/search", methods=["GET"])
+def search():
+    '''redirects search appropriately based on what was searched for'''
+    zip = str(request.args.get('search'))
+    if (len(zip) == 5):
+        return redirect("politicians/" + zip)
+    else:
+        flash('Please insert a valid zip code')
+        return redirect('/')
+
+@app.route("/politicians/<zip>")
+def politicians(zip):
+    print(news_api.nyt_news("W"))
+    #pp = pprint.PrettyPrinter(indent=4)
+    civic_list = googleCivicInfo.civic(zip)
+    news_list = []
     #pp.pprint(civic_list)
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
+
+@app.route("/politician/")
 
 def is_logged_in():
     '''Returns True if the user is logged in. False otherwise.'''

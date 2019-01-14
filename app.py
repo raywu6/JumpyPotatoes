@@ -35,7 +35,8 @@ def politicians(zip):
     #pp = pprint.PrettyPrinter(indent=4)
     civic_list = googleCivicInfo.civic(zip)
     news_list = []
-    #pp.pprint(civic_list)
+    if civic_list == "error":
+        return redirect( url_for('home') )
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
 
 @app.route("/politician/")

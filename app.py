@@ -12,11 +12,11 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def home():
-    #print(news_api.news_api("W"))
-    pp = pprint.PrettyPrinter(indent=4)
+    print(news_api.nyt_news("W"))
+    #pp = pprint.PrettyPrinter(indent=4)
     civic_list = googleCivicInfo.civic(99501)
     news_list = []
-    pp.pprint(civic_list)
+    #pp.pprint(civic_list)
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
 
 def is_logged_in():

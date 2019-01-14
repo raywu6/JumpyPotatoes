@@ -22,9 +22,10 @@ nytimeskey = getkey("util/nytApi.txt")
 def news_api(query):
     '''news articles from News API after given a query'''
     # try:
-    url = "https://newsapi.org/v2/everything?&apiKey=" + newskey
-    url += "&q=" + query
+    url = "https://newsapi.org/v2/everything?apiKey=" + newskey
+    url += "&q=" + query.replace(" ", "+")
     # url += 'domains=nytimes.com'
+    #print(url)
     cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     stuff = request.urlopen(url) # GETS STUFF
 
@@ -33,7 +34,6 @@ def news_api(query):
     return jason["articles"]
     # except HTTPError:
     #     return "error"
-    return None
 
 def nyt_news(query):
     '''news articles from NY Times after given a query'''
@@ -41,12 +41,23 @@ def nyt_news(query):
         url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + nytimeskey
         url += "&q=" + query.replace(" ", "+")
         # url += 'facet_field=day_of_week'
+        print(url)
         cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         stuff = request.urlopen(url) # GETS STUFF
 
         js = stuff.read() # gets info from urlopen
         jason = json.loads(js)
-        return jason["response"]["docs"]
+        jason = jason["response"]["docs"]
+        articles = []
+        for article in jason:
+            if article["headline"]["print_headline"]:
+                d = dict()
+                d["headline"] = article["headline"]["print_headline"]
+                d["snippet"] = article["snippet"]
+                d["web_url"] = article["web_url"]
+                articles.append(d)
+        return articles # In the form: [{'headline': 'STUFF', 'snippet': 'STUFF', 'web_url': 'STUFF'}]
+
     except HTTPError:
         return "error"
     return None

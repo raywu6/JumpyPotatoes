@@ -20,11 +20,33 @@
         a:hover{
           color: black;
         }
+        div#load_screen{
+	background: #000;
+	opacity: 1;
+	position: fixed;
+    z-index:10;
+	top: 0px;
+	width: 100%;
+	height: 1600px;
+}
+div#load_screen > div#loading{
+	color:#FFF;
+	width:120px;
+	height:24px;
+	margin: 300px auto;
+}
     </style>
+    <script>
+      window.addEventListener("load", function(){
+	var load_screen = document.getElementById("load_screen");
+	document.body.removeChild(load_screen);
+      });
+      </script>
   </head>
 
 
   <body>
+    <div id="load_screen"><div id="loading">loading document</div></div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">
         <img src="https://cdn0.iconfinder.com/data/icons/finance-and-politics-1-1/128/speech_politics_leader_politician-512.png" width="30" height="30" class="d-inline-block align-top" alt="">

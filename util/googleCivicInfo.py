@@ -19,7 +19,7 @@ def getkey(k_file):
 googlekey = getkey("util/googleCivic.txt") #gets API key
 
 def civic(zip_code):
-    '''info on all politcian in a zip_code'''
+    '''info on all politician in a zip_code'''
     try:
         url = "https://www.googleapis.com/civicinfo/v2/representatives?key=" + googlekey
         url += "&address=" + str(zip_code)
@@ -28,7 +28,9 @@ def civic(zip_code):
 
         js = stuff.read() # gets info from urlopen
         jason = json.loads(js)
+        jason["officials"].reverse()
         return jason["officials"]
     except HTTPError:
         return "error"
     return None
+

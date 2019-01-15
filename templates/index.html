@@ -7,8 +7,17 @@
 {% block content %}
 <div class="container-fluid">
   <br><br><br>
+
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+  
   <h1>Home</h1>
   <hr>
+
   <div class="row">
 
     <div class="col-2">
@@ -43,7 +52,7 @@
               {% endif %}
               <li class="list-group-item">
                 <form action="/politician" method="GET">
-                  <button type="submit" class="btn btn-link" name="name" value="{{l[i*3+j]['name']}}">Learn More</button>
+                  <a class="btn btn-link" href="politicianpage/{{l[i*3+j]['name']}}">Learn More</a>
                 </form>
               </li>
               <li class="list-group-item">

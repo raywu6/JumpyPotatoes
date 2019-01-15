@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 def home():
     print(news_api.nyt_news("W"))
     #pp = pprint.PrettyPrinter(indent=4)
-    civic_list = googleCivicInfo.civic(99501)
+    civic_list = googleCivicInfo.civic(10282)
     news_list = []
     #print(civic_list)
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
@@ -26,20 +26,42 @@ def search():
     if (len(zip) == 5):
         return redirect("politicians/" + zip)
     else:
-        flash('Please insert a valid zip code')
+        flash('Please insert a valid zip code', 'danger')
         return redirect('/')
 
-@app.route("/politicians/<zip>")
+@app.route("/politicians/<int:zip>")
 def politicians(zip):
-    print(news_api.nyt_news("W"))
-    #pp = pprint.PrettyPrinter(indent=4)
     civic_list = googleCivicInfo.civic(zip)
     news_list = []
     if civic_list == "error":
+        print ("nope. error on google api")
+        flash("Invalid search query!", 'danger')
         return redirect( url_for('home') )
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
 
-@app.route("/politician/")
+@app.route("/politicianpage/<name>")
+def politicianpage(name):
+    artNYT = news_api.nyt_news(name)
+    artNews = news_api.news_api(name)
+
+    if len(artNYT) > 5:
+        lenNYT = 5
+    else:
+        lenNYT = len(artNYT)
+
+    if len(artNews) > 5:
+        lenNews = 5
+    else:
+        lenNews = len(artNews)
+
+    topArtNYT = artNYT[0 : lenNYT]
+    topArtNews = artNews[0 : lenNews]
+
+    print ('\n\n\n' + str(topArtNYT) + '\n\n\n')
+    print ('\n\n\n' + str(topArtNews) + '\n\n\n')
+
+    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews )
+    
 
 def is_logged_in():
     '''Returns True if the user is logged in. False otherwise.'''

@@ -18,7 +18,7 @@ def setup():
 def add_user(username,password):
     '''Takes in the username and password and adds
     it into the database table "users".'''
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "INSERT INTO users (username,password)VALUES(?,?);"
     c.execute(command,(username,password))
@@ -28,7 +28,7 @@ def add_user(username,password):
 
 def get_username_list():
     '''Returns the list of all usernames.'''
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "SELECT username FROM users;"
     c.execute(command)
@@ -42,7 +42,7 @@ def get_username_list():
 def check_password(username,password):
     '''Returns True if the password matches the password that is associated
     with the username in the database and False otherwise.'''
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "SELECT password FROM users WHERE username = ?;"
     c.execute(command,(username,))
@@ -52,7 +52,7 @@ def check_password(username,password):
 
 def get_id_from_username(username):
     '''Returns the id given a username'''
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "SELECT id FROM users WHERE username = ?;"
     c.execute(command,(username,))

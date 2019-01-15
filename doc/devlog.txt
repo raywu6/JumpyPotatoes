@@ -125,8 +125,8 @@ jerryY -- 2019-01-13 21:51
 ==============================================================
 jerryY -- 2019-01-14 13:15
 --------------------------------------------------------------
-- Looked into additional feature APIs with ivanZ 
-- Brainstormed additional uses of javascript with entire team 
+- Looked into additional feature APIs with ivanZ
+- Brainstormed additional uses of javascript with entire team
 ==============================================================
 williamL -- 2019-01-14 21:10
 --------------------------------------------------------------
@@ -141,5 +141,10 @@ ivanZ -- 2019-01-15 00:46
 ==============================================================
 jerryY -- 2019-01-15 05:45
 --------------------------------------------------------------
-- Added javascript for page loading 
-- Added CSS for page loading 
+- Added javascript for page loading
+- Added CSS for page loading
+==============================================================
+williamL -- 2019-01-15 9:30
+--------------------------------------------------------------
+- fixed a few bugs
+==============================================================

@@ -16,8 +16,25 @@ def getkey(k_file):
         print("Missing key file, HALP!")
         return None
 
-newskey = getkey("util/newsApi.txt") #gets API key
-nytimeskey = getkey("util/nytApi.txt")
+newskey = getkey("keys/newsApi.txt") #gets API key
+nytimeskey = getkey("keys/nytApi.txt")
+googlekey = getkey("keys/googleCivic.txt") #gets API key
+
+def civic(zip_code):
+    '''info on all politician in a zip_code'''
+    try:
+        url = "https://www.googleapis.com/civicinfo/v2/representatives?key=" + googlekey
+        url += "&address=" + str(zip_code)
+        cri = request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        stuff = request.urlopen(url) # GETS STUFF
+
+        js = stuff.read() # gets info from urlopen
+        jason = json.loads(js)
+        jason["officials"].reverse()
+        return jason["officials"]
+    except HTTPError:
+        return "error"
+    return None
 
 def news_api(query):
     '''news articles from News API after given a query'''

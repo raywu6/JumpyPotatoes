@@ -123,6 +123,11 @@ jerryY -- 2019-01-13 21:51
 - Adjusted base.html and added new route to allow searching of politicians by zip code
 - Tested with CivicInfo API calls
 ==============================================================
+jerryY -- 2019-01-14 13:15
+--------------------------------------------------------------
+- Looked into additional feature APIs with ivanZ 
+- Brainstormed additional uses of javascript with entire team 
+==============================================================
 williamL -- 2019-01-14 21:10
 --------------------------------------------------------------
 - Wrote javascript for unfollow buttons
@@ -134,3 +139,7 @@ ivanZ -- 2019-01-15 00:46
 - Added templating to show "Politicians following"
 - Need to work on displaying cards
 ==============================================================
+jerryY -- 2019-01-15 05:45
+--------------------------------------------------------------
+- Added javascript for page loading 
+- Added CSS for page loading 

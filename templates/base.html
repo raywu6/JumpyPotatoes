@@ -80,10 +80,12 @@ div#load_screen > div#loading{
         </form>
       </div>
     </nav>
-    {% set msgs = get_flashed_messages() %}
-    {% for each in msgs %}
-    {{ each }}
-    <br>
+
+    {% set msgs = get_flashed_messages( with_categories=true ) %}
+    {% for category, msg in msgs %}
+    <div class="alert alert-{{ category }}" role="alert">
+      {{ msg }}
+    </div>
     {% endfor %}
 
     {% block content %}

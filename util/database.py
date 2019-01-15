@@ -7,7 +7,7 @@ def setup():
     """Creates the database and adds the user account credentials table and politician activity table."""
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command =  "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)"
+    command =  "CREATE TABLE IF NOT EXISTS credentials (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)"
     c.execute(command)
     command = "CREATE TABLE IF NOT EXISTS politicians (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, politician_name TEXT NOT NULL)"
     c.execute(command)

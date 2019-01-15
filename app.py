@@ -105,8 +105,6 @@ def authenticate():
     messages if there are errors.'''
     submit_type = request.form.get("submit")
     username_list = database.get_username_list()
-    msg = ''
-    type = 'primary'
     if (submit_type == "Register"):
         username_input = request.form.get("username")
         password_input = request.form.get("password")
@@ -123,8 +121,8 @@ def authenticate():
         else:
             database.add_user(username_input,password_input)
             flash('Successfully created account.', 'success')
-            return redirect(url_for("login"))
-        return render_template("register.html", m = msg, t = type)
+            return redirect(url_for("home"))
+        return render_template("register.html")
     elif (submit_type == "Login"):
         username_input = request.form.get("username")
         password_input = request.form.get("password")
@@ -133,8 +131,7 @@ def authenticate():
                 flash('Successfully logged in.', 'success')
                 session["id"] = database.getIDFromUsername(username_input)
                 return redirect(url_for("home"))
-        msg = "Username or password is incorrect. Please try again."
-        type = 'danger'
+        flash("Username or password is incorrect. Please try again.", 'danger')
         return render_template("login.html")
     return redirect(url_for("home"))
 

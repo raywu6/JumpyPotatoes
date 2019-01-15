@@ -85,7 +85,7 @@ def authenticate(username, pw):
 
 def getIDFromUsername(username):
     """Returns the primary key ID of an account given a username."""
-    db = sqlite3.connect(DATABASE_LINK)
+    db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "SELECT id FROM credentials WHERE username='{}'".format( username )
     c.execute(command)

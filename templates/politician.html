@@ -9,6 +9,13 @@
 
 <div class="container my-5">
 
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+
   <h2> Top 10 most recent articles about {{ name.capitalize() }} </h2>
   
   <div class="list-group">

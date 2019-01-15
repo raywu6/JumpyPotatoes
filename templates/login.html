@@ -9,6 +9,13 @@
 
 <div class="container">
 
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+  
 
   <div class="card border-dark bg-light mb-3">
     <div class="card-header">

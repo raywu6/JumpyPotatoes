@@ -6,9 +6,9 @@ def setup():
     """Creates the database and adds the user account credentials table and politician activity table."""
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command =  "CREATE TABLE IF NOT EXISTS credentials (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)"
+    command =  "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)"
     c.execute(command)
-    command = "CREATE TABLE IF NOT EXISTS politician_activity (id INTEGER PRIMARY KEY AUTOINCREMENT, politician_name TEXT NOT NULL UNIQUE, number_articles INTEGER NOT NULL, number_media_outlets INTEGER NOT NULL)"
+    command = "CREATE TABLE IF NOT EXISTS politicians (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, politician_name TEXT NOT NULL)"
     c.execute(command)
     db.commit()
     db.close()
@@ -59,3 +59,32 @@ def get_id_from_username(username):
     output = c.fetchall()
     db.close()
     return output[0][0]
+
+def follow(user_id, politician_name):
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = 'INSERT INTO politicians (user_id, politician_name) VALUES (?, ?)'
+    c.execute(command,(str(user_id), politician_name))
+    db.commit()
+    db.close()
+
+def unfollow(user_id, politician_name):
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = 'DELETE FROM politicians WHERE user_id = ? AND politician_name = ?'
+    c.execute(command, (str(user_id), politician_name))
+    db.commit()
+    db.close()
+
+def get_followed(user_id):
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = 'SELECT politician_name FROM politicians WHERE user_id = ?'
+    c.execute(command, (str(user_id)))
+    output = c.fetchall()
+    # print(output)
+    db.close()
+    return output
+
+# setup()
+get_followed('1')

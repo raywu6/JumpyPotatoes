@@ -17,12 +17,34 @@
   
   <h1>Home</h1>
   <hr>
+<<<<<<< HEAD
 
+=======
+  {% if m != '' %}
+  <div class="alert alert-{{t}} text-center" role="alert">
+    {{m}}
+  </div>
+  <hr>
+  {% endif %}
+>>>>>>> ed2f75d69d8ed4eb9b9a6d019dec38f28ae8d944
   <div class="row">
 
-    <div class="col-2">
+    <div class="col-2" style="position: fixed;">
+
+      <div class="card border-dark">
+        <div class="card-header bg-dark text-light">
+          <h4>Fortune Says,</h4>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote">
+            <p class="mb-0">{{q[0]}}</p>
+            <footer class="blockquote-footer"><cite title="Source Title">{{q[1]}}</cite></footer>
+          </blockquote>
+        </div>
+      </div>
 
     </div>
+    <div class="col-2"></div>
 
     <div class="col-8">
 
@@ -56,9 +78,21 @@
                 </form>
               </li>
               <li class="list-group-item">
-                <!-- <form action="" method="GET"> -->
-                  <button type="submit" class="flw btn btn-primary" name="follow" value="{{l[i*3+j]['name']}}">Follow</button>
-                <!-- </form> -->
+                {% if 'id' in s %}
+                  {% if l[i*3+j]['name'] in f %}
+                  <form action="/" method="GET">
+                    <button type="submit" class="flw btn btn-success" name="unfollow" value="{{l[i*3+j]['name']}}">Followed</button>
+                  </form>
+                  {% else %}
+                  <form action="/" method="GET">
+                    <button type="submit" class="flw btn btn-primary" name="follow" value="{{l[i*3+j]['name']}}">Follow</button>
+                  </form>
+                  {% endif %}
+                {% else %}
+                <form action="/login" method="GET">
+                  <button class="flw btn btn-primary" name="msg">Follow</button>
+                </form>
+                {% endif %}
               </li>
             </div>
 

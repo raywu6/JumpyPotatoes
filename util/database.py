@@ -19,7 +19,6 @@ def setup():
 def add_user(username,password):
     '''Takes in the username and password and adds
     it into the database table "credentials".'''
-    print( "added {} {}".format(username, password) )
     password = sha256(password.encode('utf-8')).hexdigest()
     db = sqlite3.connect(DATABASE)
     c = db.cursor()

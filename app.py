@@ -13,6 +13,8 @@ app.secret_key = os.urandom(32)
 
 @app.route('/') #####
 def home():
+    print(api.publica("comey"))
+
     #print(news_api.nyt_news("W"))
     #pp = pprint.PrettyPrinter(indent=4)
     civic_list = []

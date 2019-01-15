@@ -19,6 +19,7 @@ def getkey(k_file):
 newskey = getkey("keys/newsApi.txt") #gets API key
 nytimeskey = getkey("keys/nytApi.txt")
 googlekey = getkey("keys/googleCivic.txt") #gets API key
+publicakey = getkey("keys/publicaApi.txt") #gets API key
 
 def civic(zip_code):
     '''info on all politician in a zip_code'''
@@ -76,5 +77,27 @@ def nyt_news(query):
         return articles # In the form: [{'headline': 'STUFF', 'snippet': 'STUFF', 'web_url': 'STUFF'}]
 
     except HTTPError:
+        return "error"
+    return None
+
+def publica(query):
+    '''political information from ProPublica API'''
+    try:
+        url = "https://api.propublica.org/congress/v1/statements/search.json?"
+        url += "query=" + query.replace(" ", "+")
+        # url += 'facet_field=day_of_week'
+        #print(url)
+        d = {'User-Agent': 'Mozilla/5.0'}
+        d['X-API-Key'] = publicakey
+
+        cri = request.Request(url, headers=d)
+        stuff = request.urlopen(cri) # GETS STUFF
+        js = stuff.read() # gets info from urlopen
+        jason = json.loads(js)
+        print(jason)
+        return jason
+
+    except HTTPError:
+
         return "error"
     return None

@@ -2,7 +2,7 @@ import os #stdlib
 
 from flask import Flask, render_template, session, redirect, request, flash, url_for #pip install flask
 
-from util import database, googleCivicInfo, news_api, fortune
+from util import database, api, fortune
 from util import session as user
 
 import pprint

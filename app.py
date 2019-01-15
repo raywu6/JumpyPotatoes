@@ -12,7 +12,7 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def home():
-    print(news_api.nyt_news("W"))
+    #print(news_api.nyt_news("W"))
     #pp = pprint.PrettyPrinter(indent=4)
     civic_list = googleCivicInfo.civic(10282)
     # news_list = []
@@ -83,7 +83,7 @@ def politicianpage(name):
     print ('\n\n\n' + str(topArtNews) + '\n\n\n')
 
     return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews )
-    
+
 
 def is_logged_in():
     '''Returns True if the user is logged in. False otherwise.'''

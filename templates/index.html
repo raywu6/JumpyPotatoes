@@ -14,19 +14,16 @@
     {{ msg }}
   </div>
   {% endfor %}
-  
+
   <h1>Home</h1>
   <hr>
-<<<<<<< HEAD
 
-=======
   {% if m != '' %}
   <div class="alert alert-{{t}} text-center" role="alert">
     {{m}}
   </div>
   <hr>
   {% endif %}
->>>>>>> ed2f75d69d8ed4eb9b9a6d019dec38f28ae8d944
   <div class="row">
 
     <div class="col-2" style="position: fixed;">
@@ -46,8 +43,28 @@
     </div>
     <div class="col-2"></div>
 
-    <div class="col-8">
 
+
+
+
+
+
+    <div class="col-8">
+      {% if session['id'] %}
+        {% if f|length > 0 %}
+          <h2> Politicians you are following! </h2>
+
+
+
+
+
+
+        {% else %}
+          <h2> You are not following any politicians! </h2>
+        {% endif %}
+      {% endif %}
+
+      <hr> </hr>
       {% for i in range(5) %}
       <div class="row">
         {% for j in range(3) %}

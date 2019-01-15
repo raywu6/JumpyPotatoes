@@ -87,4 +87,4 @@ def get_followed(user_id):
     return output
 
 # setup()
-get_followed('1')
+# get_followed('1')

@@ -129,3 +129,8 @@ williamL -- 2019-01-14 21:10
 - Added more functions in database.py to work with politician tables
 - Added more message displays
 ==============================================================
+ivanZ -- 2019-01-15 00:46
+--------------------------------------------------------------
+- Added templating to show "Politicians following"
+- Need to work on displaying cards
+==============================================================

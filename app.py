@@ -2,7 +2,7 @@ import os #stdlib
 
 from flask import Flask, render_template, session, redirect, request, flash, url_for #pip install flask
 
-from util import database, googleCivicInfo, news_api, fortune
+from util import database, api, fortune
 
 import pprint
 
@@ -14,7 +14,12 @@ app.secret_key = os.urandom(32)
 def home():
     #print(news_api.nyt_news("W"))
     #pp = pprint.PrettyPrinter(indent=4)
-    civic_list = googleCivicInfo.civic(10282)
+    civic_list = []
+    if 'civic_list' in session:
+        civic_list = session['civic_list']
+        session.pop('civic_list')
+    else:
+        civic_list = api.civic(10282)
     # news_list = []
     msg = ''
     type = 'primary'
@@ -53,18 +58,19 @@ def search():
 
 @app.route("/politicians/<int:zip>")
 def politicians(zip):
-    civic_list = googleCivicInfo.civic(zip)
-    news_list = []
-    if civic_list == "error":
+    session['civic_list'] = api.civic(zip)
+    # news_list = []
+    if session['civic_list'] == "error":
+        session.pop('civic_list')
         print ("nope. error on google api")
-        flash("Invalid search query!", 'danger')
-        return redirect( url_for('home') )
-    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), nl = news_list)
+        session['msg'] = "Invalid search query!"
+        session['type'] = 'danger'
+    return redirect( url_for('home') )
 
 @app.route("/politicianpage/<name>")
 def politicianpage(name):
-    artNYT = news_api.nyt_news(name)
-    artNews = news_api.news_api(name)
+    artNYT = api.nyt_news(name)
+    artNews = api.news_api(name)
 
     if len(artNYT) > 5:
         lenNYT = 5
@@ -99,6 +105,11 @@ def login():
     if 'msg' in request.args:
         msg = 'Please Login Before Following a Politician.'
         type = 'warning'
+    if 'msg' in session:
+        msg = session['msg']
+        type = session['type']
+        session.pop('msg')
+        session.pop('type')
     return render_template("login.html", m = msg, t = type)
 
 @app.route("/register")

@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block content %}
-<h1>Register</h1>
-<br>
-{% set msgs = get_flashed_messages(with_categories=true) %}
-{% for category, each in msgs %}
-  <p class="{{category}}">{{each}}<p>
-{% endfor %}
+<br><br><br>
 
 <div class="container">
+
+  {% if m != '' %}
+  <div class="alert alert-{{t}} text-center" role="alert">
+    {{m}}
+  </div>
+  {% endif %}
+
   <div class="card border-dark bg-light mb-3">
     <div class="card-header">
       <h1> Register </h1>

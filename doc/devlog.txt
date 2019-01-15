@@ -120,7 +120,12 @@ ivanZ -- 2019-01-13 21:41
 ==============================================================
 jerryY -- 2019-01-13 21:51
 --------------------------------------------------------------
-- Adjusted base.html and added new route to allow searching of politicians by zip code 
+- Adjusted base.html and added new route to allow searching of politicians by zip code
 - Tested with CivicInfo API calls
 ==============================================================
-
+williamL -- 2019-01-14 21:10
+--------------------------------------------------------------
+- Wrote javascript for unfollow buttons
+- Added more functions in database.py to work with politician tables
+- Added more message displays
+==============================================================

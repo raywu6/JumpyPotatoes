@@ -18,12 +18,12 @@ def setup():
 
 def add_user(username,password):
     '''Takes in the username and password and adds
-    it into the database table "users".'''
+    it into the database table "credentials".'''
     print( "added {} {}".format(username, password) )
     password = sha256(password.encode('utf-8')).hexdigest()
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command = "INSERT INTO users (username,password)VALUES(?,?);"
+    command = "INSERT INTO credentials (username,password)VALUES(?,?);"
     c.execute(command,(username,password))
     db.commit()
     db.close()
@@ -33,7 +33,7 @@ def get_username_list():
     '''Returns the list of all usernames.'''
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command = "SELECT username FROM users;"
+    command = "SELECT username FROM credentials;"
     c.execute(command)
     output = c.fetchall()
     db.close()

@@ -1,4 +1,5 @@
 import sqlite3 #stdlib
+from hashlib import sha256 #stdlib
 
 DATABASE = 'data/database.db' #from prospective of app.py
 
@@ -18,6 +19,7 @@ def setup():
 def add_user(username,password):
     '''Takes in the username and password and adds
     it into the database table "users".'''
+    password = sha256(password.encode('utf-8')).hexdigest()
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "INSERT INTO users (username,password)VALUES(?,?);"
@@ -38,27 +40,6 @@ def get_username_list():
     for user in output:
         user_list.append(user[0])
     return user_list
-
-def check_password(username,password):
-    '''Returns True if the password matches the password that is associated
-    with the username in the database and False otherwise.'''
-    db = sqlite3.connect(DATABASE)
-    c = db.cursor()
-    command = "SELECT password FROM users WHERE username = ?;"
-    c.execute(command,(username,))
-    output = c.fetchall()
-    db.close()
-    return output[0][0] == password
-
-def get_id_from_username(username):
-    '''Returns the id given a username'''
-    db = sqlite3.connect(DATABASE)
-    c = db.cursor()
-    command = "SELECT id FROM users WHERE username = ?;"
-    c.execute(command,(username,))
-    output = c.fetchall()
-    db.close()
-    return output[0][0]
 
 def follow(user_id, politician_name):
     db = sqlite3.connect(DATABASE)
@@ -88,3 +69,26 @@ def get_followed(user_id):
 
 # setup()
 # get_followed('1')
+
+def authenticate(username, pw):
+    """Returns True if given username and password match. Otherwise return False."""
+    pw = sha256(pw.encode('utf-8')).hexdigest()
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = "SELECT * FROM credentials WHERE username='{}' AND password='{}'".format( username, pw )
+    c.execute(command)
+    retBool = c.fetchone() != None
+    db.close()
+
+    return retBool
+
+def getIDFromUsername(username):
+    """Returns the primary key ID of an account given a username."""
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    command = "SELECT id FROM credentials WHERE username='{}'".format( username )
+    c.execute(command)
+    userID = c.fetchone()[0]
+    db.close()
+
+    return userID

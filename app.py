@@ -82,7 +82,7 @@ def politicianpage(name):
     print ('\n\n\n' + str(topArtNYT) + '\n\n\n')
     print ('\n\n\n' + str(topArtNews) + '\n\n\n')
 
-    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews )
+    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews, s = session)
 
 @app.route("/login", methods=['GET'])
 def login():
@@ -143,6 +143,19 @@ def logout():
     session.pop("id")
     flash('Successfully logged out.', 'success')
     return redirect('/')
+
+@app.route("/settings")
+def settings():
+    """Settings for users, shows list of all followed politicians and can unfollow."""
+    if (user.is_logged_in()):
+        followed = []
+        data = database.get_followed(session['id'])
+        for row in data:
+            followed.append(row[0])
+        return render_template("settings.html", listFollowed = followed, s = session)
+    else:
+        flash("You must be logged in to see that page!", "danger")
+        return redirect(url_for("home"))
 
 if __name__ == '__main__':
     app.debug = True #set to False in production mode

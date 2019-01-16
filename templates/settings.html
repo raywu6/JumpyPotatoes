@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block content %}
+<h2>Settings</h2>
+
+<div class="container my-5">
+
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+
+  <h2> Currently followed politicians </i> </h2>
+
+  <div class="list-group">
+
+    {% if listFollowed == [] %}
+    <h5> You are not following any politicians! </h5>
+
+    {% else %}
+    
+    {% for name in listFollowed %}
+    <a class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"> {{ name }}</h5>
+      </div>
+    </a>
+    
+    {% endfor %}
+
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endblock %}

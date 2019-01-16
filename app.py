@@ -22,7 +22,7 @@ def home():
         civic_list = session['civic_list']
         session.pop('civic_list')
     else:
-        civic_list = api.civic(10282)
+        civic_list = api.civic(90001)
     # news_list = []
     if 'follow' in request.args:
         database.follow(session['id'], request.args['follow'])

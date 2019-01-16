@@ -16,8 +16,8 @@
   </div>
   {% endfor %}
 
-  <h2> Top 10 most recent articles about {{ name.capitalize() }} </h2>
-  
+  <h2> Top 10 most recent articles about <i>{{ name.capitalize() }}</i> </h2>
+
   <div class="list-group">
 
     {% for article in articles_nyt %}
@@ -40,7 +40,7 @@
     </a>
 
     {% endfor %}
-    
+
   </div>
 
 </div>

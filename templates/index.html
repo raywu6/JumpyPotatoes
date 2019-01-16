@@ -8,15 +8,15 @@
 <div class="container-fluid">
   <br><br><br>
 
-  {% set msgs = get_flashed_messages( with_categories=true ) %}
-  {% for category, msg in msgs %}
-  <div class="alert alert-{{ category }}" role="alert">
-    {{ msg }}
-  </div>
-  {% endfor %}
-
   <h1>Home</h1>
   <hr>
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }} text-center" role="alert">
+    <h3>{{ msg }}</h3>
+  </div>
+  <hr>
+  {% endfor %}
 
   <div class="row">
 
@@ -45,17 +45,7 @@
 
     <div class="col-8">
       {% if session['id'] %}
-        {% if f|length > 0 %}
-          <h2> Politicians you are following! </h2>
 
-
-
-
-
-
-        {% else %}
-          <h2> You are not following any politicians! </h2>
-        {% endif %}
       {% endif %}
 
       {% for i in range(5) %}
@@ -115,6 +105,37 @@
       {% endfor %}
       <!-- </div> -->
 
+    </div>
+
+    <div class="col-2" style="position: fixed; right: 0px;">
+      {% if 'id' in s %}
+        {% if f == [] %}
+        <div class="alert alert-warning">
+          <h3> You are not following any politicians! </h3>
+        </div>
+        {% else %}
+        <div class="card border-dark">
+          <div class="card-header bg-info text-white">
+            <h3>You are following</h3>
+          </div>
+          <form action="/politician" method="GET">
+            <ul class="list-group list-group-flush">
+              {% for name in f %}
+              <li class="list-group-item">
+
+                <a class="btn btn-link" href="politicianpage/{{name}}">{{name}}</a>
+              </li>
+
+              {% endfor %}
+            </ul>
+          </form>
+        </div>
+        {% endif %}
+      {% else %}
+      <div class="alert alert-warning">
+        <h3> Please login to experience more features! </h3>
+      </div>
+      {% endif %}
     </div>
 
   </div>

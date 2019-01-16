@@ -10,6 +10,15 @@ import pprint
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
+@app.route('/following')
+def following():
+    if 'id' in session:
+        data = database.get_followed(session['id'])
+        for row in data:
+            followed.append(row[0])
+        return render_template
+    else:
+
 
 @app.route('/') #####
 def home():

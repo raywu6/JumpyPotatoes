@@ -157,3 +157,8 @@ ivanZ -- 2019-01-15 2:46
 - Added ProPublica Api functionality
 - Added 411 on ProPublica
 ==============================================================
+williamL -- 2019-01-15 21:25
+--------------------------------------------------------------
+- Added displaying followed politicians on home page
+- Implemented unfollowing politicians in /settings
+==============================================================

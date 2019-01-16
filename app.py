@@ -75,9 +75,14 @@ def politicianpage(name):
     artNews = api.news_api(name)
     #pp = pprint.PrettyPrinter(indent=4)
     #pp.pprint(api.publica(name))
+    
     bioInfo = api.getWIKI(name)
-    bio = bioInfo['extract']
-    url = bioInfo['url']
+    if bioInfo != "error":
+        bio = bioInfo['extract']
+        url = bioInfo['url']
+    else:
+        bio = ""
+        url = ""
     
     if len(artNYT) > 5:
         lenNYT = 5

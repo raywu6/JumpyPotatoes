@@ -27,9 +27,11 @@ def home():
         if zipCode != "error":
             print ("showing politicians for " + zipCode)
             civic_list = api.civic(zipCode)
+            showZip = zipCode
         else:
             print ("showing politicians for 10282 (default)")
             civic_list = api.civic(10282)
+            showZip = "10282"
     # news_list = []
     if 'follow' in request.args:
         database.follow(session['id'], request.args['follow'])
@@ -44,7 +46,7 @@ def home():
         for row in data:
             followed.append(row[0])
     #print(civic_list)
-    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), q = quote, f = followed)
+    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), q = quote, f = followed, showZip=showZip)
 
 @app.route("/search", methods=["GET"])
 def search():
@@ -73,9 +75,10 @@ def politicianpage(name):
     artNews = api.news_api(name)
     #pp = pprint.PrettyPrinter(indent=4)
     #pp.pprint(api.publica(name))
-    print("\n\n\nVVVVVVVVVV")
-    print(api.getWIKI(name))
-    print("^^^^^^^^^^^^^^^\n\n\n")
+    bioInfo = api.getWIKI(name)
+    bio = bioInfo['extract']
+    url = bioInfo['url']
+    
     if len(artNYT) > 5:
         lenNYT = 5
     else:
@@ -92,7 +95,7 @@ def politicianpage(name):
     #print ('\n\n\n' + str(topArtNYT) + '\n\n\n')
     #print ('\n\n\n' + str(topArtNews) + '\n\n\n')
 
-    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews, s = session)
+    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews, s = session, bio=bio, url=url)
 
 @app.route("/login", methods=['GET'])
 def login():

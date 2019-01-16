@@ -74,3 +74,6 @@ We are using both the Google Civic Information API, the News API, and The New Yo
 
 #### [IP API](https://ipapi.co/)
 0. You do not need to obtain an API key to use this API service! You can get information based on the IP address by using the following link: `https://ipapi.co/json`
+
+#### [Wikipedia API](https://en.wikipedia.org/api/rest_v1/)
+0. You do not need to obtain an API key to use this API service! You can get information based on the IP address by using the following link: `https://en.wikipedia.org/api/rest_v1/page/summary/` followed by the name of the Wikipedia article you wish to look up, with underscores (`_`) in place of spaces. Example: `https://en.wikipedia.org/api/rest_v1/page/summary/Bill_de_Blasio`.

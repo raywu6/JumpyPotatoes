@@ -127,6 +127,7 @@ def getWIKI(name):
         returnD = {}
         returnD['description'] = data['description']
         returnD['extract'] = data['extract']
+        returnD['url'] = data['content_urls']['desktop']['page']
         #print("TEST")
         print(url)
         return returnD

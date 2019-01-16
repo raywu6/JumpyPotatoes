@@ -13,10 +13,11 @@ app.secret_key = os.urandom(32)
 
 @app.route('/') #####
 def home():
-    print(api.publica("comey"))
+
 
     #print(news_api.nyt_news("W"))
-    #pp = pprint.PrettyPrinter(indent=4)
+
+
     civic_list = []
     if 'civic_list' in session:
         civic_list = session['civic_list']
@@ -70,7 +71,11 @@ def politicians(zip):
 def politicianpage(name):
     artNYT = api.nyt_news(name)
     artNews = api.news_api(name)
-
+    #pp = pprint.PrettyPrinter(indent=4)
+    #pp.pprint(api.publica(name))
+    print("\n\n\nVVVVVVVVVV")
+    print(api.getWIKI(name))
+    print("^^^^^^^^^^^^^^^\n\n\n")
     if len(artNYT) > 5:
         lenNYT = 5
     else:
@@ -84,8 +89,8 @@ def politicianpage(name):
     topArtNYT = artNYT[0 : lenNYT]
     topArtNews = artNews[0 : lenNews]
 
-    print ('\n\n\n' + str(topArtNYT) + '\n\n\n')
-    print ('\n\n\n' + str(topArtNews) + '\n\n\n')
+    #print ('\n\n\n' + str(topArtNYT) + '\n\n\n')
+    #print ('\n\n\n' + str(topArtNews) + '\n\n\n')
 
     return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews, s = session)
 

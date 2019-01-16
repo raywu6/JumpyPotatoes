@@ -113,5 +113,25 @@ def getZIP():
 
     except HTTPError:
         return "error"
-    
+
+    return None
+
+def getWIKI(name):
+    """Returns description and extra"""
+    try:
+        name = name.strip()
+        url = "https://en.wikipedia.org/api/rest_v1/page/summary/" + name.replace(" ", "_")
+        u = request.urlopen(url)
+        response = u.read()
+        data = json.loads(response)
+        returnD = {}
+        returnD['description'] = data['description']
+        returnD['extract'] = data['extract']
+        #print("TEST")
+        print(url)
+        return returnD
+
+    except HTTPError:
+        return "error"
+
     return None

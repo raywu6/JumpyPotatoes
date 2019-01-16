@@ -148,6 +148,8 @@ def logout():
 def settings():
     """Settings for users, shows list of all followed politicians and can unfollow."""
     if (user.is_logged_in()):
+        for name in request.args:
+            database.unfollow(session['id'], name)
         followed = []
         data = database.get_followed(session['id'])
         for row in data:

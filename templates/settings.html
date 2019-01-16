@@ -16,27 +16,43 @@ Settings
   </div>
   {% endfor %}
 
-  <h2> Currently followed politicians </i> </h2>
+  <h2> Currently Followed Politicians: </h2>
 
-  <div class="list-group">
 
     {% if listFollowed == [] %}
-    <h5> You are not following any politicians! </h5>
+    <div class="alert alert-secondary text-center">
+      <h4> You are not following any politicians! </h4>
+
+    </div>
 
     {% else %}
-    
-    {% for name in listFollowed %}
-    <a href="/politicianpage/{{ name }}" class="list-group-item list-group-item-action flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"> {{ name }}</h5>
-      </div>
-    </a>
-    
-    {% endfor %}
+    <form action="/settings" method="GET">
+      <ul class="list-group">
+        {% for name in listFollowed %}
+        <a class="list-group-item" href="/politicianpage/{{ name }}">
+          <!-- <div class="form-group">
+            <input type="checkbox" class="form-check-input" name="{{name}}">
+
+            <a href="/politicianpage/{{ name }}">
+                <h4 class="alert alert-primary">{{ name }}</h4>
+            </a>
+          </div> -->
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="{{name}}">
+            <h4  class="form-check-label">{{ name }}</h4>
+          </div>
+
+        </a>
+
+        {% endfor %}
+      </ul>
+      <br>
+      <button type="submit" class="btn btn-warning">Unfollow</button>
+    </form>
+
 
     {% endif %}
 
-  </div>
 
 </div>
 

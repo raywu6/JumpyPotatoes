@@ -185,7 +185,10 @@ raymondW -- 2019-01-15 13:20
 --------------------------------------------------------------
 - Fix registration/login bug in database
 - Fix flash bug 
-
+==============================================================
+jerryY -- 2019-01-15 14:25
+--------------------------------------------------------------
+- Tested project for bugs and potential crashes in code
 ==============================================================
 ivanZ -- 2019-01-15 14:46
 --------------------------------------------------------------
@@ -208,3 +211,7 @@ raymondW -- 2019-01-16 00:05
 --------------------------------------------------------------
 - Added auto display of local representatives on landing page based on ZIP code of IP address using the IP API
 - Added IP API to README.md
+==============================================================
+jerryY -- 2019-01-16 12:52
+--------------------------------------------------------------
+- Added following further functionality as branch (may not be merged) 

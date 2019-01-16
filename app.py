@@ -22,7 +22,13 @@ def home():
         civic_list = session['civic_list']
         session.pop('civic_list')
     else:
-        civic_list = api.civic(10282)
+        zipCode = api.getZIP()
+        if zipCode != "error":
+            print ("showing politicians for " + zipCode)
+            civic_list = api.civic(zipCode)
+        else:
+            print ("showing politicians for 10282 (default)")
+            civic_list = api.civic(10282)
     # news_list = []
     if 'follow' in request.args:
         database.follow(session['id'], request.args['follow'])
@@ -56,9 +62,8 @@ def politicians(zip):
     # news_list = []
     if session['civic_list'] == "error":
         session.pop('civic_list')
-        print ("nope. error on google api")
-        session['msg'] = "Invalid search query!"
-        session['type'] = 'danger'
+        print ("nope. error returned from google api")
+        flash('Invalid search query!', 'danger')
     return redirect( url_for('home') )
 
 @app.route("/politicianpage/<name>")

@@ -101,3 +101,17 @@ def publica(query):
 
         return "error"
     return None
+
+def getZIP():
+    """Returns the zip code from the IP API"""
+    try:
+        url = "https://ipapi.co/json/"
+        u = request.urlopen(url)
+        response = u.read()
+        data = json.loads(response)
+        return data['postal']
+
+    except HTTPError:
+        return "error"
+    
+    return None

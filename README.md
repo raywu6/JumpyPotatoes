@@ -71,3 +71,6 @@ We are using both the Google Civic Information API, the News API, and The New Yo
 1. Your API key will be sent to your e-mail.
 2. Put the API key in a text file named `nytApi.txt` in the root directory of the cloned repo.
 3. To send test API requests, consult the [API documentation](https://developer.nytimes.com/article_search_v2.json) for the appropriate API request URL and parameters you need for the desired information. You will need to include the key-value pair `api-key=YOUR_API_KEY_HERE`.
+
+#### [IP API](https://ipapi.co/)
+0. You do not need to obtain an API key to use this API service! You can get information based on the IP address by using the following link: `https://ipapi.co/json`

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block content %}
+<h2>Settings</h2>
+
+<div class="container my-5">
+
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+
+  <h2> Currently Followed Politicians: </h2>
+
+
+    {% if listFollowed == [] %}
+    <div class="alert alert-secondary text-center">
+      <h4> You are not following any politicians! </h4>
+
+    </div>
+
+    {% else %}
+    <form action="/settings" method="GET">
+      <ul class="list-group">
+        {% for name in listFollowed %}
+        <a class="list-group-item" href="/politicianpage/{{ name }}">
+          <!-- <div class="form-group">
+            <input type="checkbox" class="form-check-input" name="{{name}}">
+
+            <a href="/politicianpage/{{ name }}">
+                <h4 class="alert alert-primary">{{ name }}</h4>
+            </a>
+          </div> -->
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="{{name}}">
+            <h4  class="form-check-label">{{ name }}</h4>
+          </div>
+
+        </a>
+
+        {% endfor %}
+      </ul>
+      <br>
+      <button type="submit" class="btn btn-warning">Unfollow</button>
+    </form>
+
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}

@@ -5,33 +5,37 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Login</h1>
-  <br>
-  {% set msgs = get_flashed_messages(with_categories=true) %}
-  {% for category, each in msgs %}
-    <p class="{{category}}">{{each}}<p>
+<br><br><br>
+
+<div class="container">
+
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
   {% endfor %}
-  <div class="container">
+  
 
-    <div class="card border-dark bg-light mb-3">
-      <div class="card-header">
-        <h1>Login</h1>
-      </div>
-      <div class="card-body">
-        <form action="/auth" method="POST">
-          <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name="username" placeholder="Enter Username">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password" name="password">
-          </div>
+  <div class="card border-dark bg-light mb-3">
+    <div class="card-header">
+      <h1>Login</h1>
+    </div>
+    <div class="card-body">
+      <form action="/auth" method="POST">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
 
-          <p class="register">Don't have an account? <a href="/register" class="btn btn-secondary btn-sm">Register here!</a><p>
-          <input class="btn btn-dark" type="submit" id="submit" name="submit" value="Login">
-        </form>
-      </div>
+        <p class="register">Don't have an account? <a href="/register" class="btn btn-secondary btn-sm">Register here!</a><p>
+        <input class="btn btn-dark" type="submit" id="submit" name="submit" value="Login">
+      </form>
     </div>
   </div>
+</div>
 {% endblock %}

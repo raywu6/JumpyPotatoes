@@ -14,11 +14,39 @@
         h1{
           text-align: center;
         }
+        a{
+          color: black;
+        }
+        a:hover{
+          color: black;
+        }
+        div#load_screen{
+        	background: #000;
+        	opacity: 1;
+        	position: fixed;
+            z-index:10;
+        	top: 0px;
+        	width: 100%;
+        	height: 1600px;
+        }
+        div#load_screen > div#loading{
+        	color:#FFF;
+        	width:120px;
+        	height:24px;
+        	margin: 300px auto;
+        }
     </style>
+    <script>
+      window.addEventListener("load", function(){
+	       var load_screen = document.getElementById("load_screen");
+	       document.body.removeChild(load_screen);
+      });
+      </script>
   </head>
 
 
   <body>
+    <div id="load_screen"><div id="loading">loading document</div></div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">
         <img src="https://cdn0.iconfinder.com/data/icons/finance-and-politics-1-1/128/speech_politics_leader_politician-512.png" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -30,24 +58,28 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          {% if 'id' in s %}
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/settings">Settings</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/register">Register</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
+          {% endif %}
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" aria-label="Search">
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" href='search'>Search</button>
+        <form action="/search" method="GET" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Zip Code" name="search" aria-label="Search">
+          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
-    {% set msgs = get_flashed_messages() %}
-    {% for each in msgs %}
-    {{ each }}
-    <br>
-    {% endfor %}
 
     {% block content %}
     <p>No hablo queso.</p>
@@ -55,10 +87,11 @@
 
     {% block footer %}
     <center> <em> &copy; Copyright 2019 by JumpyPotatoes </em> </center>
+    <center> Note: We use the <a href="https://ipapi.co">IP API</a> in order to obtain your ZIP code based on your IP address. Your information is not used for any other purpose.</center>
     {% endblock %}
 
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="static/qwer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.js" crossorigin="anonymous"></script>
   </body>
 

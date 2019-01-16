@@ -1,17 +1,48 @@
 {% extends "base.html" %}
 
 {% block title %}
-   {{ name }}
+{{ name.capitalize() }}
 {% endblock %}
 
 {% block content %}
 <h2>{{ name }}</h2>
-  <ul>
-    <li>Politicial Affliction: </li>
-    <li>Age:</li>
-    <li>Jurisdiction:</li>
-    <li>Term: </li>
-    <li>Activity: </li>
-  </ul>
+
+<div class="container my-5">
+
+  {% set msgs = get_flashed_messages( with_categories=true ) %}
+  {% for category, msg in msgs %}
+  <div class="alert alert-{{ category }}" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+
+  <h2> 10 most recent articles about <i>{{ name.capitalize() }}</i> </h2>
+
+  <div class="list-group">
+
+    {% for article in articles_nyt %}
+    <a href="{{ article['web_url'] }}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"> {{ article['headline'] }}</h5>
+      </div>
+      <p class="mb-1">{{ article['snippet'] }}</p>
+    </a>
+    {% endfor %}
+
+    {% for article in articles_news %}
+    <a href="{{ article['url'] }}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ article['title'] }}</h5>
+        <small>{{ article['publishedAt'] }}</small>
+      </div>
+      <p class="mb-1">{{ article['content'] }}</p>
+      <small>{{ article['source']['name'] }}</small>
+    </a>
+
+    {% endfor %}
+
+  </div>
+
+</div>
 
 {% endblock %}

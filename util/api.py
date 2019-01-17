@@ -32,6 +32,13 @@ def civic(zip_code):
         js = stuff.read() # gets info from urlopen
         jason = json.loads(js)
         jason["officials"].reverse()
+
+        for official in jason["officials"]:
+            try:
+                x = official['phones']
+            except KeyError:
+                official['phones'] = ['Unavailable']
+                
         return jason["officials"]
     except HTTPError:
         return "CIVIC INFORMATION ERROR"

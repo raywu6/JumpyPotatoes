@@ -35,6 +35,8 @@ Now, install all of the requirements needed to run this project. This command si
 (dc)$ pip install -r requirements.txt
 ```
 
+Now, procure the appropriate API keys and putting your API key in the appropriate file in `keys/`. See the section below labeled *Procuring API keys*.
+
 Now, run the python file to start the Flask server:
 ```
 (dc)$ python3 app.py

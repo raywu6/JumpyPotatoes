@@ -129,7 +129,7 @@ def getWIKI(name):
         returnD['extract'] = data['extract']
         returnD['url'] = data['content_urls']['desktop']['page']
         #print("TEST")
-        print(url)
+        #print(url)
         return returnD
 
     except HTTPError:

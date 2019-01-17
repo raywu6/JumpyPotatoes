@@ -46,6 +46,15 @@ def home():
         data = database.get_followed(session['id'])
         for row in data:
             followed.append(row[0])
+
+    for person in civic_list:
+        #print(person['name'])
+        desc = api.getWIKI(person['name'])['description']
+        if "Disambiguation" in desc:
+            person['description'] = "Unavailable"
+        else:
+            person['description'] = desc.title()
+
     #print(civic_list)
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), q = quote, f = followed, z = showZip)
 

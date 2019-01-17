@@ -134,3 +134,5 @@ dc/
 
 # db files
 *.db
+
+keys/*.txt

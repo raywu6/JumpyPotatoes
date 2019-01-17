@@ -28,6 +28,7 @@ def home():
         if zipCode != "error":
             print ("showing politicians for " + zipCode)
             civic_list = api.civic(zipCode)
+            print (civic_list)
             showZip = zipCode
         else:
             print ("showing politicians for 10282 (default)")
@@ -46,10 +47,15 @@ def home():
         data = database.get_followed(session['id'])
         for row in data:
             followed.append(row[0])
-
+    
+            
     for person in civic_list:
         #print(person['name'])
-        desc = api.getWIKI(person['name'])['description']
+        info = api.getWIKI(person['name'])
+        if info != "CIVIC INFORMATION ERROR":
+            desc = api.getWIKI(person['name'])['description']
+        else:
+            desc = "Disambiguation"
         if "Disambiguation" in desc:
             person['description'] = "Unavailable"
         else:

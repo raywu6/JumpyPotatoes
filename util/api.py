@@ -34,7 +34,7 @@ def civic(zip_code):
         jason["officials"].reverse()
         return jason["officials"]
     except HTTPError:
-        return "error"
+        return "CIVIC INFORMATION ERROR"
     return None
 
 def news_api(query):
@@ -77,7 +77,7 @@ def nyt_news(query):
         return articles # In the form: [{'headline': 'STUFF', 'snippet': 'STUFF', 'web_url': 'STUFF'}]
 
     except HTTPError:
-        return "error"
+        return "NY Times Article ERROR"
     return None
 
 def publica(query):
@@ -99,7 +99,7 @@ def publica(query):
 
     except HTTPError:
 
-        return "error"
+        return "Pro Publica ERROR"
     return None
 
 def getZIP():
@@ -112,7 +112,7 @@ def getZIP():
         return data['postal']
 
     except HTTPError:
-        return "error"
+        return "ZIP code ERROR"
 
     return None
 
@@ -133,6 +133,6 @@ def getWIKI(name):
         return returnD
 
     except HTTPError:
-        return "error"
+        return "WIKIPEDIA ERROR"
 
     return None

@@ -21,15 +21,32 @@ def home():
     civic_list = []
     if 'zip' in session:
         civic_list = api.civic(session['zip'])
-        showZip = str(session['zip'])
-        session.pop('zip')
+        if civic_list == "CIVIC INFORMATION ERROR":
+            flash("Invalid search query!", "danger")
+            zipCode = api.getZIP()
+            if zipCode != "ZIP code ERROR":
+                print ("showing politicians for " + zipCode)
+                civic_list = api.civic(zipCode)
+                showZip = zipCode
+                print(repr(civic_list))
+                if civic_list == "CIVIC INFORMATION ERROR":
+                    flash("Invalid search query!", "danger")
+                    civic_list = api.civic(10282)
+                    showZip = "10282"
+        else:
+            showZip = str(session['zip'])
+            session.pop('zip')
     else:
         zipCode = api.getZIP()
-        if zipCode != "error":
+        if zipCode != "ZIP code ERROR":
             print ("showing politicians for " + zipCode)
             civic_list = api.civic(zipCode)
-            print (civic_list)
             showZip = zipCode
+            print(repr(civic_list))
+            if civic_list == "CIVIC INFORMATION ERROR":
+                flash("Invalid search query!", "danger")
+                civic_list = api.civic(10282)
+                showZip = "10282"
         else:
             print ("showing politicians for 10282 (default)")
             civic_list = api.civic(10282)
@@ -48,18 +65,17 @@ def home():
         for row in data:
             followed.append(row[0])
     
-            
-    for person in civic_list:
-        #print(person['name'])
-        info = api.getWIKI(person['name'])
-        if info != "CIVIC INFORMATION ERROR":
-            desc = api.getWIKI(person['name'])['description']
-        else:
-            desc = "Disambiguation"
-        if "Disambiguation" in desc:
-            person['description'] = "Unavailable"
-        else:
-            person['description'] = desc.title()
+    if civic_list != "CIVIC INFORMATION ERROR":
+        for person in civic_list:
+            info = api.getWIKI(person['name'])
+            if info != "WIKIPEDIA ERROR":
+                desc = api.getWIKI(person['name'])['description']
+            else:
+                desc = "Disambiguation"
+            if "Disambiguation" in desc:
+                person['description'] = "Unavailable"
+            else:
+                person['description'] = desc.title()
 
     #print(civic_list)
     return render_template("index.html", s = session, l = civic_list, c = len(civic_list), q = quote, f = followed, z = showZip)
@@ -78,7 +94,6 @@ def search():
 @app.route("/politicians/<int:zip>")
 def politicians(zip):
     session['zip'] = zip
-    # news_list = []
     # if session['civic_list'] == "error":
     #     session.pop('civic_list')
     #     print ("nope. error returned from google api")
@@ -93,7 +108,7 @@ def politicianpage(name):
     #pp.pprint(api.publica(name))
 
     bioInfo = api.getWIKI(name)
-    if bioInfo != "error":
+    if bioInfo != "WIKIPEDIA ERROR":
         bio = bioInfo['extract']
         url = bioInfo['url']
     else:
@@ -184,7 +199,7 @@ def authenticate():
 @app.route("/logout")
 def logout():
     '''Removes the current session and redirects users back to login page.'''
-    session.pop("id")
+    user.logout()
     flash('Successfully logged out.', 'success')
     return redirect('/')
 

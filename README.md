@@ -49,7 +49,7 @@ To exit your virtual environment, run the command `$ deactivate`.
 
 ### Procuring API Keys
 
-We are using both the Google Civic Information API, the News API, and The New York Times API.
+We are using the Google Civic Information API, the News API, The New York Times API, the IP API, as well as the Wikipedia API.
 
 #### [Google Civic Information API](https://developers.google.com/civic-information/docs/v2/)
 0. Sign up for a Google Developers account [here](https://console.developers.google.com) with your Google account.

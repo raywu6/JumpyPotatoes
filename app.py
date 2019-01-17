@@ -42,11 +42,12 @@ def home():
             print ("showing politicians for " + zipCode)
             civic_list = api.civic(zipCode)
             showZip = zipCode
-            print(repr(civic_list))
+            print("line 45: " + repr(civic_list))
             if civic_list == "CIVIC INFORMATION ERROR":
-                flash("Invalid search query!", "danger")
+                print("showing default")
                 civic_list = api.civic(10282)
                 showZip = "10282"
+                print("default: " + repr(civic_list))
         else:
             print ("showing politicians for 10282 (default)")
             civic_list = api.civic(10282)

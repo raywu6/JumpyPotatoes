@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ name.capitalize() }}
+{{ name.title() }}
 {% endblock %}
 
 {% block content %}
-<h2>{{ name }}</h2>
+<h2>{{ name.title() }}</h2>
 
 <div class="container my-5">
 

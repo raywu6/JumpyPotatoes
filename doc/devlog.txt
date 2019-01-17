@@ -256,3 +256,6 @@ raymondW -- 2019-01-17 05:26
 - Sent API key files to Mr. Brown
 
 ==============================================================
+jerryY -- 2019-01-17 13:15
+--------------------------------------------------------------
+- Tested project from starting virtual environment and readme 

@@ -23,6 +23,21 @@
   <div class="card mb-4" style="background-color: #E8E8E8">
     <div class="card-body">
       <h6> {{ bio }} <a href="{{ url }}"> (Wikipedia) </a></h6>
+      {% if 'id' in s %}
+        {% if name in f %}
+        <form action="/politicianpage/{{name}}" method="GET">
+          <button type="submit" class="flw btn btn-success" name="unfollow" value="{{name}}">Followed</button>
+        </form>
+        {% else %}
+        <form action="/politicianpage/{{name}}" method="GET">
+          <button type="submit" class="flw btn btn-primary" name="follow" value="{{name}}">Follow</button>
+        </form>
+        {% endif %}
+      {% else %}
+      <form action="/login" method="GET">
+        <button class="flw btn btn-primary" name="msg">Follow</button>
+      </form>
+      {% endif %}
     </div>
   </div>
   {% endif %}

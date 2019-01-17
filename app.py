@@ -17,11 +17,12 @@ def home():
 
     #print(news_api.nyt_news("W"))
 
-
+    showZip = ""
     civic_list = []
-    if 'civic_list' in session:
-        civic_list = session['civic_list']
-        session.pop('civic_list')
+    if 'zip' in session:
+        civic_list = api.civic(session['zip'])
+        showZip = str(session['zip'])
+        session.pop('zip')
     else:
         zipCode = api.getZIP()
         if zipCode != "error":
@@ -46,7 +47,7 @@ def home():
         for row in data:
             followed.append(row[0])
     #print(civic_list)
-    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), q = quote, f = followed, showZip=showZip)
+    return render_template("index.html", s = session, l = civic_list, c = len(civic_list), q = quote, f = followed, z = showZip)
 
 @app.route("/search", methods=["GET"])
 def search():
@@ -61,12 +62,12 @@ def search():
 
 @app.route("/politicians/<int:zip>")
 def politicians(zip):
-    session['civic_list'] = api.civic(zip)
+    session['zip'] = zip
     # news_list = []
-    if session['civic_list'] == "error":
-        session.pop('civic_list')
-        print ("nope. error returned from google api")
-        flash('Invalid search query!', 'danger')
+    # if session['civic_list'] == "error":
+    #     session.pop('civic_list')
+    #     print ("nope. error returned from google api")
+    #     flash('Invalid search query!', 'danger')
     return redirect( url_for('home') )
 
 @app.route("/politicianpage/<name>")
@@ -75,7 +76,7 @@ def politicianpage(name):
     artNews = api.news_api(name)
     #pp = pprint.PrettyPrinter(indent=4)
     #pp.pprint(api.publica(name))
-    
+
     bioInfo = api.getWIKI(name)
     if bioInfo != "error":
         bio = bioInfo['extract']
@@ -83,7 +84,7 @@ def politicianpage(name):
     else:
         bio = ""
         url = ""
-    
+
     if len(artNYT) > 5:
         lenNYT = 5
     else:
@@ -97,10 +98,20 @@ def politicianpage(name):
     topArtNYT = artNYT[0 : lenNYT]
     topArtNews = artNews[0 : lenNews]
 
-    #print ('\n\n\n' + str(topArtNYT) + '\n\n\n')
-    #print ('\n\n\n' + str(topArtNews) + '\n\n\n')
+    if 'follow' in request.args:
+        database.follow(session['id'], request.args['follow'])
+        flash('You have successfully followed ' + request.args['follow'], 'success')
+    if 'unfollow' in request.args:
+        database.unfollow(session['id'], request.args['unfollow'])
+        flash('You have successfully unfollowed ' + request.args['unfollow'], 'success')
 
-    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews, s = session, bio=bio, url=url)
+    followed = []
+    if 'id' in session:
+        data = database.get_followed(session['id'])
+        for row in data:
+            followed.append(row[0])
+
+    return render_template('politician.html', name=name , articles_nyt = topArtNYT , articles_news = topArtNews, s = session, bio=bio, url=url, f = followed)
 
 @app.route("/login", methods=['GET'])
 def login():

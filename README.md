@@ -2,7 +2,7 @@
 
 Team roster: Runmin (William) Lu, Raymond Wu, Jerry Ye, Ivan Zhang
 
-[our video demo here -- placeholder, if you see this message, it is before the video link deadline and we have not posted the video just yet!](https://google.com/)
+[our video demo here](https://youtu.be/U4sOXcb7Wg8)
 
 
 ## Project Description

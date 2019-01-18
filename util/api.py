@@ -132,9 +132,14 @@ def getWIKI(name):
         response = u.read()
         data = json.loads(response)
         returnD = {}
-        returnD['description'] = data['description']
-        returnD['extract'] = data['extract']
-        returnD['url'] = data['content_urls']['desktop']['page']
+        try:
+            returnD['description'] = data['description']
+            returnD['extract'] = data['extract']
+            returnD['url'] = data['content_urls']['desktop']['page']
+        except:
+            returnD['description'] = ""
+            returnD['extract'] = ""
+            returnD['url'] = ""
         #print("TEST")
         #print(url)
         return returnD

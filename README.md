@@ -2,6 +2,9 @@
 
 Team roster: Runmin (William) Lu, Raymond Wu, Jerry Ye, Ivan Zhang
 
+[our video demo here -- placeholder, if you see this message, it is before the video link deadline and we have not posted the video just yet!](https://google.com/)
+
+
 ## Project Description
 The goal of PoliTracker is to allow its users to follow and keep track of what actions their political representatives are taking. By taking advantage of the News API, The New York Times API, Twitter API, and Google’s Civic Information API, based on how many posts and articles are written about a politician, we can determine how active any given politician is. By combining the Twitter API and the TwinWord Sentiment Analysis API, we can determine public sentiment and support toward any given politician. On our user interface, the user can see all of this information, as well as recent articles about a politician for more details. We can make the data we aggregate even stronger by storing the data in a database, and analyzing it for our users (public sentiment/activity across states, political parties, etc.; additional feature).
 
